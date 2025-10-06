@@ -14,7 +14,7 @@ const programsData = [
     name: "Cafe Moments",
     logo: "☕",
     points: 12550,
-    earnRate: "Earn 10 points per $1",
+    earnRate: "Earn 10 points per ₹1",
     outlets: 5,
     distance: "0.5 km",
     description: "Your favorite coffee shop with rewards on every purchase.",
@@ -26,7 +26,7 @@ const programsData = [
     name: "Pizza Hut",
     logo: "🍕",
     points: 0,
-    earnRate: "Earn 5 points per $1",
+    earnRate: "Earn 5 points per ₹1",
     outlets: 8,
     distance: "1.2 km",
     description: "Enjoy delicious pizzas and earn rewards with every order.",
@@ -91,7 +91,7 @@ export default function ProgramDetails() {
     setIsAdded(true);
     toast({
       title: "Card Added!",
-      description: `${program.name} has been added to your wallet.`,
+      description: `₹{program.name} has been added to your wallet.`,
     });
   };
 
@@ -174,7 +174,7 @@ export default function ProgramDetails() {
                 variant="premium"
                 className="w-full"
                 size="lg"
-                onClick={() => navigate(`/redeem/${programId}`)}
+                onClick={() => navigate(`/redeem/₹{programId}`)}
               >
                 Redeem Points
               </Button>
@@ -228,7 +228,7 @@ export default function ProgramDetails() {
                   <div className="h-3 rounded-full bg-muted overflow-hidden">
                     <div
                       className="h-full gradient-primary transition-all"
-                      style={{ width: `${(punchCard.current / punchCard.total) * 100}%` }}
+                      style={{ width: `₹{(punchCard.current / punchCard.total) * 100}%` }}
                     />
                   </div>
                 </div>
@@ -236,7 +236,7 @@ export default function ProgramDetails() {
                   {Array.from({ length: punchCard.total }).map((_, i) => (
                     <div
                       key={i}
-                      className={`aspect-square rounded-lg border-2 flex items-center justify-center ${
+                      className={`aspect-square rounded-lg border-2 flex items-center justify-center ₹{
                         i < punchCard.current
                           ? "border-primary bg-primary/10"
                           : "border-border"
@@ -271,7 +271,7 @@ export default function ProgramDetails() {
                       <p className="text-xs text-muted-foreground">{txn.date}</p>
                     </div>
                     <div className="text-right">
-                      <p className={`font-bold ${txn.points > 0 ? "text-primary" : "text-muted-foreground"}`}>
+                      <p className={`font-bold ₹{txn.points > 0 ? "text-primary" : "text-muted-foreground"}`}>
                         {txn.points > 0 ? "+" : ""}{txn.points}
                       </p>
                       <p className="text-xs text-muted-foreground">{txn.type}</p>
