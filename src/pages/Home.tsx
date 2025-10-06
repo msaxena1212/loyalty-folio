@@ -6,16 +6,15 @@ import { Badge } from "@/components/ui/badge";
 import {
   Search,
   MapPin,
-  Tag,
   Wallet,
-  Gift,
-  Home as HomeIcon,
   Menu,
   Utensils,
   Sparkles,
   ShoppingBag,
   Coffee,
+  Home as HomeIcon,
 } from "lucide-react";
+import BottomNav from "@/components/BottomNav";
 
 const categories = [
   { id: "all", name: "All", icon: HomeIcon },
@@ -211,56 +210,7 @@ export default function Home() {
         </div>
       </div>
 
-      {/* Bottom Navigation */}
-      <nav className="fixed bottom-0 left-0 right-0 border-t bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
-        <div className="container mx-auto flex justify-around py-3">
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex-col gap-1 h-auto"
-            onClick={() => navigate("/home")}
-          >
-            <HomeIcon className="h-5 w-5 text-primary" />
-            <span className="text-xs text-primary font-medium">Home</span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex-col gap-1 h-auto"
-            onClick={() => navigate("/offers")}
-          >
-            <Tag className="h-5 w-5" />
-            <span className="text-xs">Offers</span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex-col gap-1 h-auto"
-            onClick={() => navigate("/wallet")}
-          >
-            <Wallet className="h-5 w-5" />
-            <span className="text-xs">Wallet</span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex-col gap-1 h-auto"
-            onClick={() => navigate("/rewards")}
-          >
-            <Gift className="h-5 w-5" />
-            <span className="text-xs">Rewards</span>
-          </Button>
-          <Button
-            variant="ghost"
-            size="sm"
-            className="flex-col gap-1 h-auto"
-            onClick={() => navigate("/menu")}
-          >
-            <Menu className="h-5 w-5" />
-            <span className="text-xs">Menu</span>
-          </Button>
-        </div>
-      </nav>
+      <BottomNav />
     </div>
   );
 }

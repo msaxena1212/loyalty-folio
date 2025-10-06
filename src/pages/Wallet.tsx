@@ -1,7 +1,20 @@
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@/components/ui/alert-dialog";
 import { ArrowLeft, Wallet as WalletIcon, Trash2, ArrowRight, TrendingUp } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import BottomNav from "@/components/BottomNav";
 
 const cards = [
   {
@@ -32,10 +45,23 @@ const cards = [
 
 export default function Wallet() {
   const navigate = useNavigate();
-  const totalValue = cards.reduce((acc, card) => {
+  const { toast } = useToast();
+  const [walletCards, setWalletCards] = useState(cards);
+  const [deleteCardId, setDeleteCardId] = useState<number | null>(null);
+
+  const totalValue = walletCards.reduce((acc, card) => {
     const value = parseFloat(card.value.replace("$", ""));
     return acc + value;
   }, 0);
+
+  const handleDeleteCard = (cardId: number) => {
+    setWalletCards(prev => prev.filter(card => card.id !== cardId));
+    setDeleteCardId(null);
+    toast({
+      title: "Card Removed",
+      description: "The loyalty card has been removed from your wallet.",
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background pb-20">
@@ -92,7 +118,7 @@ export default function Wallet() {
           </Button>
         </div>
 
-        {cards.map((card) => (
+        {walletCards.map((card) => (
           <div
             key={card.id}
             className="group relative overflow-hidden rounded-2xl border bg-card shadow-lg transition-all hover:shadow-premium"
@@ -121,6 +147,7 @@ export default function Wallet() {
                   className="text-muted-foreground hover:text-destructive"
                   onClick={(e) => {
                     e.stopPropagation();
+                    setDeleteCardId(card.id);
                   }}
                 >
                   <Trash2 className="h-4 w-4" />
@@ -150,7 +177,10 @@ export default function Wallet() {
                 <Button
                   variant="premium"
                   className="flex-1"
-                  onClick={() => navigate(`/redeem/${card.id}`)}
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigate(`/redeem/${card.id}`);
+                  }}
                 >
                   Redeem
                 </Button>
@@ -160,7 +190,7 @@ export default function Wallet() {
         ))}
 
         {/* Empty State */}
-        {cards.length === 0 && (
+        {walletCards.length === 0 && (
           <div className="rounded-2xl border-2 border-dashed p-12 text-center">
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
               <WalletIcon className="h-8 w-8 text-muted-foreground" />
@@ -175,6 +205,30 @@ export default function Wallet() {
           </div>
         )}
       </div>
+
+      {/* Delete Confirmation Dialog */}
+      <AlertDialog open={deleteCardId !== null} onOpenChange={(open) => !open && setDeleteCardId(null)}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Remove Card?</AlertDialogTitle>
+            <AlertDialogDescription>
+              Are you sure you want to remove this loyalty card from your wallet? 
+              Your transaction history will be preserved, but you'll need to add the card again to use it.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogAction
+              onClick={() => deleteCardId && handleDeleteCard(deleteCardId)}
+              className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+            >
+              Remove
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
+
+      <BottomNav />
     </div>
   );
 }

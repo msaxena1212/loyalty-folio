@@ -9,6 +9,11 @@ import Login from "./pages/Login";
 import SetPin from "./pages/SetPin";
 import Home from "./pages/Home";
 import Wallet from "./pages/Wallet";
+import Offers from "./pages/Offers";
+import Rewards from "./pages/Rewards";
+import Menu from "./pages/Menu";
+import ProgramDetails from "./pages/ProgramDetails";
+import RedeemPoints from "./pages/RedeemPoints";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -26,6 +31,11 @@ const App = () => (
           <Route path="/set-pin" element={<SetPin />} />
           <Route path="/home" element={<Home />} />
           <Route path="/wallet" element={<Wallet />} />
+          <Route path="/offers" element={<Offers />} />
+          <Route path="/rewards" element={<Rewards />} />
+          <Route path="/menu" element={<Menu />} />
+          <Route path="/program/:id" element={<ProgramDetails />} />
+          <Route path="/redeem/:id" element={<RedeemPoints />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
