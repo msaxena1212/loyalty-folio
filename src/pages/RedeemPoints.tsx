@@ -21,7 +21,7 @@ export default function RedeemPoints() {
     name: "Cafe Moments",
     logo: "☕",
     currentPoints: 12550,
-    conversionRate: 100, // 100 points = $1
+    conversionRate: 100, // 100 points = ₹1
   };
 
   const calculatePoints = (value: string) => {
@@ -90,7 +90,7 @@ export default function RedeemPoints() {
   const handleFinish = () => {
     toast({
       title: "Redemption Successful!",
-      description: `${pointsToRedeem} points redeemed successfully.`,
+      description: `₹{pointsToRedeem} points redeemed successfully.`,
     });
     navigate("/wallet");
   };
@@ -143,7 +143,7 @@ export default function RedeemPoints() {
             <h3 className="text-lg font-bold mb-4">Enter Purchase Amount</h3>
             <div className="space-y-4">
               <div>
-                <Label htmlFor="amount">Purchase Value ($)</Label>
+                <Label htmlFor="amount">Purchase Value (₹)</Label>
                 <div className="relative">
                   <DollarSign className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
                   <Input
@@ -274,7 +274,7 @@ export default function RedeemPoints() {
               <div className="space-y-3 mb-6 text-left">
                 <div className="flex justify-between p-3 bg-muted rounded-lg">
                   <span className="text-sm text-muted-foreground">Amount</span>
-                  <span className="font-bold">${purchaseValue}</span>
+                  <span className="font-bold">₹{purchaseValue}</span>
                 </div>
                 <div className="flex justify-between p-3 bg-muted rounded-lg">
                   <span className="text-sm text-muted-foreground">Points Redeemed</span>
