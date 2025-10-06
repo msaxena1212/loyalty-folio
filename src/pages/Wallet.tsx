@@ -22,7 +22,7 @@ const cards = [
     name: "Cafe Moments",
     logo: "☕",
     points: 12550,
-    value: "$125.50",
+    value: "₹125.50",
     color: "from-amber-500 to-orange-600",
   },
   {
@@ -30,7 +30,7 @@ const cards = [
     name: "Pizza Hut",
     logo: "🍕",
     points: 8200,
-    value: "$164.00",
+    value: "₹164.00",
     color: "from-red-500 to-pink-600",
   },
   {
@@ -38,7 +38,7 @@ const cards = [
     name: "Serenity Spa",
     logo: "💆",
     points: 5400,
-    value: "$360.00",
+    value: "₹360.00",
     color: "from-purple-500 to-indigo-600",
   },
 ];
@@ -50,7 +50,7 @@ export default function Wallet() {
   const [deleteCardId, setDeleteCardId] = useState<number | null>(null);
 
   const totalValue = walletCards.reduce((acc, card) => {
-    const value = parseFloat(card.value.replace("$", ""));
+    const value = parseFloat(card.value.replace("₹", ""));
     return acc + value;
   }, 0);
 
@@ -96,7 +96,7 @@ export default function Wallet() {
         <div className="container mx-auto">
           <p className="mb-2 text-sm opacity-90">Total Rewards Value</p>
           <div className="flex items-end gap-2">
-            <h2 className="text-4xl font-bold">${totalValue.toFixed(2)}</h2>
+            <h2 className="text-4xl font-bold">₹{totalValue.toFixed(2)}</h2>
             <div className="mb-2 flex items-center gap-1 text-sm">
               <TrendingUp className="h-4 w-4" />
               <span>+12.5% this month</span>
@@ -125,7 +125,7 @@ export default function Wallet() {
           >
             {/* Card Background Gradient */}
             <div
-              className={`absolute inset-0 bg-gradient-to-br ${card.color} opacity-5 transition-opacity group-hover:opacity-10`}
+              className={`absolute inset-0 bg-gradient-to-br ₹{card.color} opacity-5 transition-opacity group-hover:opacity-10`}
             />
 
             <div className="relative p-6">
@@ -169,7 +169,7 @@ export default function Wallet() {
                 <Button
                   variant="default"
                   className="flex-1"
-                  onClick={() => navigate(`/program/${card.id}`)}
+                  onClick={() => navigate(`/program/₹{card.id}`)}
                 >
                   View Details
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -179,7 +179,7 @@ export default function Wallet() {
                   className="flex-1"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/redeem/${card.id}`);
+                    navigate(`/redeem/₹{card.id}`);
                   }}
                 >
                   Redeem
