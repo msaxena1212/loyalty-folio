@@ -147,7 +147,7 @@ export default function Menu() {
 
         {/* App Version */}
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          Loyalty Wallet v1.0.0
+          ZYNO Loyalty Wallet v1.0.0
         </div>
       </div>
 
