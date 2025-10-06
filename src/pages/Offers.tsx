@@ -64,7 +64,7 @@ export default function Offers() {
   };
 
   const handleRedeemOffer = (offer: typeof offers[0]) => {
-    navigate(`/redeem-offer/${offer.id}`, { state: { offer } });
+    navigate(`/redeem-offer/₹{offer.id}`, { state: { offer } });
   };
 
   return (
@@ -153,7 +153,7 @@ export default function Offers() {
                     </Button>
                     <Button
                       variant="outline"
-                      onClick={() => navigate(`/program/${offer.programId}`)}
+                      onClick={() => navigate(`/program/₹{offer.programId}`)}
                     >
                       View Program
                     </Button>
