@@ -22,7 +22,7 @@ const rewards = [
     programName: "Serenity Spa",
     logo: "💆",
     title: "Spa Package Discount",
-    description: "$50 off on premium spa package",
+    description: "₹50 off on premium spa package",
     earnedDate: "2025-09-15",
     expiryDate: "2025-11-30",
     status: "available",
@@ -120,7 +120,7 @@ export default function Rewards() {
                     <Button
                       variant="premium"
                       className="w-full"
-                      onClick={() => navigate(`/redeem-reward/${reward.id}`, { state: { reward } })}
+                      onClick={() => navigate(`/redeem-reward/₹{reward.id}`, { state: { reward } })}
                     >
                       Use This Reward
                     </Button>
