@@ -105,7 +105,7 @@ export default function Home() {
                 <Wallet className="h-5 w-5 text-white" />
               </div>
               <div>
-                <h1 className="text-lg font-bold">LOYALTY WALLET</h1>
+                <h1 className="text-lg font-bold">ZYNO LOYALTY WALLET</h1>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <MapPin className="h-3 w-3" />
                   <span>New York, USA</span>
