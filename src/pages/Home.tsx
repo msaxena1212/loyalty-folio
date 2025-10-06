@@ -30,7 +30,7 @@ const programs = [
     name: "Cafe Moments",
     category: "food",
     logo: "☕",
-    points: "Earn 10 points per $1",
+    points: "Earn 10 points per ₹1",
     distance: "0.5 km",
     outlets: 5,
   },
@@ -39,7 +39,7 @@ const programs = [
     name: "Pizza Hut",
     category: "food",
     logo: "🍕",
-    points: "Earn 5 points per $1",
+    points: "Earn 5 points per ₹1",
     distance: "1.2 km",
     outlets: 8,
   },
@@ -48,7 +48,7 @@ const programs = [
     name: "Burger King",
     category: "food",
     logo: "🍔",
-    points: "Earn 8 points per $1",
+    points: "Earn 8 points per ₹1",
     distance: "2.0 km",
     outlets: 12,
   },
@@ -57,7 +57,7 @@ const programs = [
     name: "Serenity Spa",
     category: "spa",
     logo: "💆",
-    points: "Earn 15 points per $1",
+    points: "Earn 15 points per ₹1",
     distance: "3.5 km",
     outlets: 3,
   },
@@ -66,7 +66,7 @@ const programs = [
     name: "Style Studio",
     category: "lifestyle",
     logo: "👗",
-    points: "Earn 12 points per $1",
+    points: "Earn 12 points per ₹1",
     distance: "1.8 km",
     outlets: 6,
   },
@@ -75,7 +75,7 @@ const programs = [
     name: "Daily Mart",
     category: "essentials",
     logo: "🛒",
-    points: "Earn 5 points per $1",
+    points: "Earn 5 points per ₹1",
     distance: "0.8 km",
     outlets: 15,
   },
@@ -173,7 +173,7 @@ export default function Home() {
           {filteredPrograms.map((program) => (
             <div
               key={program.id}
-              onClick={() => navigate(`/program/${program.id}`)}
+              onClick={() => navigate(`/program/₹{program.id}`)}
               className="group cursor-pointer rounded-xl border bg-card p-6 shadow-md transition-all hover:shadow-premium hover:scale-[1.02]"
             >
               <div className="mb-4 flex items-start justify-between">
