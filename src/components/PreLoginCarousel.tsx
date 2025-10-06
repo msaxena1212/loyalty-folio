@@ -71,8 +71,8 @@ export const PreLoginCarousel = () => {
         <header className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-white">LOYALTY WALLET</h1>
-              <p className="text-sm text-white/80">INFINIA Services & Solutions</p>
+              <h1 className="text-2xl font-bold text-white">ZYNO LOYALTY WALLET</h1>
+              <p className="text-sm text-white/80">Elite Mindz</p>
             </div>
           </div>
         </header>
@@ -149,7 +149,7 @@ export const PreLoginCarousel = () => {
         {/* Footer */}
         <footer className="p-6 text-center">
           <p className="text-sm text-white/70">
-            Powered by: INFINIA Services & Solutions
+            Powered by: Elite Mindz
           </p>
         </footer>
       </div>
