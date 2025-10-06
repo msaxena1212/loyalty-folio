@@ -66,7 +66,7 @@ export default function Register() {
               <Wallet className="h-6 w-6 text-white" />
             </div>
             <div>
-              <h1 className="text-2xl font-bold">LOYALTY WALLET</h1>
+              <h1 className="text-2xl font-bold">ZYNO LOYALTY WALLET</h1>
               <p className="text-sm text-muted-foreground">Create your account</p>
             </div>
           </div>
