@@ -108,7 +108,7 @@ export default function Home() {
                 <h1 className="text-lg font-bold">ZYNO LOYALTY WALLET</h1>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <MapPin className="h-3 w-3" />
-                  <span>New York, USA</span>
+                  <span>New Delhi, India</span>
                 </div>
               </div>
             </div>
