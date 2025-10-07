@@ -8,6 +8,7 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import SetPin from "./pages/SetPin";
 import Home from "./pages/Home";
+import CategoryPrograms from "./pages/CategoryPrograms";
 import Wallet from "./pages/Wallet";
 import Offers from "./pages/Offers";
 import Rewards from "./pages/Rewards";
@@ -30,6 +31,7 @@ const App = () => (
           <Route path="/login" element={<Login />} />
           <Route path="/set-pin" element={<SetPin />} />
           <Route path="/home" element={<Home />} />
+          <Route path="/category/:categoryId" element={<CategoryPrograms />} />
           <Route path="/wallet" element={<Wallet />} />
           <Route path="/offers" element={<Offers />} />
           <Route path="/rewards" element={<Rewards />} />
