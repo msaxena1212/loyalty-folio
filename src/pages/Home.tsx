@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Switch } from "@/components/ui/switch";
 import {
   Search,
   MapPin,
@@ -12,6 +13,7 @@ import {
   ShoppingBag,
   Coffee,
   ChevronRight,
+  Languages,
 } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
 
@@ -57,6 +59,7 @@ const categories = [
 export default function Home() {
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isJapanese, setIsJapanese] = useState(false);
 
   const filteredCategories = categories.filter((category) =>
     category.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -82,14 +85,26 @@ export default function Home() {
                 </div>
               </div>
             </div>
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full hover:bg-primary/10"
-              onClick={() => navigate("/menu")}
-            >
-              <Menu className="h-5 w-5" />
-            </Button>
+            <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-muted/50">
+                <Languages className="h-4 w-4 text-muted-foreground" />
+                <span className="text-xs font-medium text-muted-foreground">EN</span>
+                <Switch 
+                  checked={isJapanese} 
+                  onCheckedChange={setIsJapanese}
+                  className="scale-75"
+                />
+                <span className="text-xs font-medium text-muted-foreground">JP</span>
+              </div>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full hover:bg-primary/10"
+                onClick={() => navigate("/menu")}
+              >
+                <Menu className="h-5 w-5" />
+              </Button>
+            </div>
           </div>
         </div>
       </header>
