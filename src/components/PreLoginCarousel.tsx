@@ -3,6 +3,8 @@ import { Button } from "@/components/ui/button";
 import { Switch } from "@/components/ui/switch";
 import { ChevronLeft, ChevronRight, Languages } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 import heroFood from "@/assets/hero-food.jpg";
 import heroLifestyle from "@/assets/hero-lifestyle.jpg";
 import heroEssentials from "@/assets/hero-essentials.jpg";
@@ -11,34 +13,30 @@ import heroWellness from "@/assets/hero-wellness.jpg";
 const slides = [
   {
     image: heroFood,
-    title: "Follow Good Taste",
-    subtitle: "Indulge into the pleasure of multiple cuisines",
-    category: "Food & Dining",
+    key: "food" as const,
   },
   {
     image: heroLifestyle,
-    title: "Capture Real Style",
-    subtitle: "Design your life with objects that define your style",
-    category: "Lifestyle",
+    key: "lifestyle" as const,
   },
   {
     image: heroWellness,
-    title: "Moments of Serenity",
-    subtitle: "Delight in moments that express your happiness",
-    category: "Spa & Wellness",
+    key: "wellness" as const,
   },
   {
     image: heroEssentials,
-    title: "Everyday Essentials",
-    subtitle: "Buy the little important things for everyday needs",
-    category: "Grocery & Essentials",
+    key: "essentials" as const,
   },
 ];
 
 export const PreLoginCarousel = () => {
   const [currentSlide, setCurrentSlide] = useState(0);
-  const [isJapanese, setIsJapanese] = useState(false);
   const navigate = useNavigate();
+  const { language, setLanguage, isJapanese } = useLanguage();
+
+  const t = translations.preLogin;
+  const currentSlideData = slides[currentSlide];
+  const slideTranslations = t.slides[currentSlideData.key];
 
   const nextSlide = () => {
     setCurrentSlide((prev) => (prev + 1) % slides.length);
@@ -51,7 +49,7 @@ export const PreLoginCarousel = () => {
   return (
     <div className="relative min-h-screen w-full overflow-hidden">
       {/* Slide Images */}
-      {slides.map((slide, index) => (
+        {slides.map((slide, index) => (
         <div
           key={index}
           className={`absolute inset-0 transition-opacity duration-700 ${
@@ -60,7 +58,7 @@ export const PreLoginCarousel = () => {
         >
           <img
             src={slide.image}
-            alt={slide.category}
+            alt={t.slides[slide.key].category[language]}
             className="h-full w-full object-cover"
           />
           <div className="absolute inset-0 gradient-hero" />
@@ -73,15 +71,15 @@ export const PreLoginCarousel = () => {
         <header className="p-6">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold text-white">ZYNO LOYALTY WALLET</h1>
-              <p className="text-sm text-white/80">Elite Mindz</p>
+              <h1 className="text-2xl font-bold text-white">{t.title[language]}</h1>
+              <p className="text-sm text-white/80">{t.company[language]}</p>
             </div>
             <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 backdrop-blur-sm">
               <Languages className="h-4 w-4 text-white/90" />
               <span className="text-xs font-medium text-white/90">EN</span>
               <Switch 
                 checked={isJapanese} 
-                onCheckedChange={setIsJapanese}
+                onCheckedChange={(checked) => setLanguage(checked ? "jp" : "en")}
                 className="scale-75"
               />
               <span className="text-xs font-medium text-white/90">JP</span>
@@ -94,13 +92,13 @@ export const PreLoginCarousel = () => {
           <div className="max-w-2xl space-y-6 px-6">
             <div className="space-y-2">
               <p className="text-sm font-medium uppercase tracking-wider text-white/90">
-                {slides[currentSlide].category}
+                {slideTranslations.category[language]}
               </p>
               <h2 className="text-5xl font-bold text-white">
-                {slides[currentSlide].title}
+                {slideTranslations.title[language]}
               </h2>
               <p className="text-xl text-white/90">
-                {slides[currentSlide].subtitle}
+                {slideTranslations.subtitle[language]}
               </p>
             </div>
 
@@ -128,7 +126,7 @@ export const PreLoginCarousel = () => {
                 onClick={() => navigate("/login")}
                 className="w-full sm:w-auto"
               >
-                Login
+                {t.buttons.login[language]}
               </Button>
               <Button
                 variant="hero"
@@ -136,7 +134,7 @@ export const PreLoginCarousel = () => {
                 onClick={() => navigate("/register")}
                 className="w-full sm:w-auto"
               >
-                Register
+                {t.buttons.register[language]}
               </Button>
             </div>
           </div>
@@ -161,7 +159,7 @@ export const PreLoginCarousel = () => {
         {/* Footer */}
         <footer className="p-6 text-center">
           <p className="text-sm text-white/70">
-            Powered by: Elite Mindz
+            {t.footer.poweredBy[language]}
           </p>
         </footer>
       </div>

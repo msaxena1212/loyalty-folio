@@ -3,6 +3,8 @@ import { useNavigate, useParams } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Badge } from "@/components/ui/badge";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 import {
   Search,
   MapPin,
@@ -15,10 +17,10 @@ import {
 import BottomNav from "@/components/BottomNav";
 
 const categoryData = {
-  food: { name: "Food & Dining", icon: Utensils },
-  spa: { name: "Spa & Wellness", icon: Sparkles },
-  lifestyle: { name: "Lifestyle", icon: ShoppingBag },
-  essentials: { name: "Essentials", icon: Coffee },
+  food: { icon: Utensils },
+  spa: { icon: Sparkles },
+  lifestyle: { icon: ShoppingBag },
+  essentials: { icon: Coffee },
 };
 
 const programs = [
@@ -265,9 +267,12 @@ export default function CategoryPrograms() {
   const navigate = useNavigate();
   const { categoryId } = useParams();
   const [searchQuery, setSearchQuery] = useState("");
+  const { language } = useLanguage();
+  const t = translations.categoryPrograms;
 
   const category = categoryData[categoryId as keyof typeof categoryData];
   const CategoryIcon = category?.icon;
+  const categoryName = categoryId ? t.categories[categoryId as keyof typeof t.categories]?.[language] : "";
 
   const filteredPrograms = programs.filter((program) => {
     const matchesCategory = program.category === categoryId;
@@ -299,9 +304,9 @@ export default function CategoryPrograms() {
                 {CategoryIcon && <CategoryIcon className="h-6 w-6 text-white" />}
               </div>
               <div>
-                <h1 className="text-lg font-bold">{category.name}</h1>
+                <h1 className="text-lg font-bold">{categoryName}</h1>
                 <p className="text-xs text-muted-foreground">
-                  {filteredPrograms.length} {filteredPrograms.length === 1 ? 'program' : 'programs'} available
+                  {filteredPrograms.length} {t.programs[language]}
                 </p>
               </div>
             </div>
@@ -314,7 +319,7 @@ export default function CategoryPrograms() {
         <div className="relative">
           <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-primary" />
           <Input
-            placeholder="Search programs..."
+            placeholder={language === "en" ? "Search programs..." : "プログラムを検索..."}
             className="pl-12 h-12 rounded-2xl border-2 focus:border-primary bg-card/50 backdrop-blur"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
@@ -326,18 +331,18 @@ export default function CategoryPrograms() {
       <div className="container mx-auto p-4">
         <div className="mb-6 flex items-center justify-between">
           <div>
-            <h2 className="text-2xl font-bold">Available Programs</h2>
-            <p className="text-sm text-muted-foreground mt-1">Tap to view details & start earning 🎉</p>
+            <h2 className="text-2xl font-bold">{language === "en" ? "Available Programs" : "利用可能なプログラム"}</h2>
+            <p className="text-sm text-muted-foreground mt-1">{language === "en" ? "Tap to view details & start earning 🎉" : "詳細を表示してポイントを獲得しましょう 🎉"}</p>
           </div>
           <Badge variant="secondary" className="rounded-full px-4 py-2">
-            {filteredPrograms.length} programs
+            {filteredPrograms.length} {t.programs[language]}
           </Badge>
         </div>
 
         {filteredPrograms.length === 0 ? (
           <div className="text-center py-12">
             <div className="text-6xl mb-4">😢</div>
-            <p className="text-muted-foreground">No programs found</p>
+            <p className="text-muted-foreground">{language === "en" ? "No programs found" : "プログラムが見つかりません"}</p>
           </div>
         ) : (
           <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
@@ -379,7 +384,7 @@ export default function CategoryPrograms() {
                       <span className="font-medium">{program.distance}</span>
                     </div>
                     <div className="text-muted-foreground font-medium">
-                      {program.outlets} outlets
+                      {program.outlets} {language === "en" ? "outlets" : "店舗"}
                     </div>
                   </div>
                 </div>

@@ -1,17 +1,21 @@
 import { useNavigate, useLocation } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Home, Tag, Wallet, Gift, Menu } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 export default function BottomNav() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { language } = useLanguage();
+  const t = translations.nav;
 
   const navItems = [
-    { path: "/home", icon: Home, label: "Home" },
-    { path: "/offers", icon: Tag, label: "Offers" },
-    { path: "/wallet", icon: Wallet, label: "Wallet" },
-    { path: "/rewards", icon: Gift, label: "Rewards" },
-    { path: "/menu", icon: Menu, label: "Menu" },
+    { path: "/home", icon: Home, label: t.home[language] },
+    { path: "/offers", icon: Tag, label: t.offers[language] },
+    { path: "/wallet", icon: Wallet, label: t.wallet[language] },
+    { path: "/rewards", icon: Gift, label: t.rewards[language] },
+    { path: "/menu", icon: Menu, label: t.menu[language] },
   ];
 
   return (
