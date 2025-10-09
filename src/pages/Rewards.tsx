@@ -4,6 +4,9 @@ import { Badge } from "@/components/ui/badge";
 import { Card } from "@/components/ui/card";
 import { ArrowLeft, Gift, Calendar, CheckCircle2, Clock } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 const rewards = [
   {
@@ -43,6 +46,8 @@ const rewards = [
 
 export default function Rewards() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = translations.rewards;
 
   const availableRewards = rewards.filter(r => r.status === "available");
   const redeemedRewards = rewards.filter(r => r.status === "redeemed");
@@ -52,25 +57,24 @@ export default function Rewards() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate("/home")}
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-accent">
-                <Gift className="h-5 w-5 text-accent-foreground" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold">My Rewards</h1>
-                <p className="text-xs text-muted-foreground">
-                  {availableRewards.length} available
-                </p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" onClick={() => navigate("/home")}>
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-accent">
+                  <Gift className="h-5 w-5 text-accent-foreground" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold">{t.title[language]}</h1>
+                  <p className="text-xs text-muted-foreground">
+                    {availableRewards.length} {t.available[language]}
+                  </p>
+                </div>
               </div>
             </div>
+            <LanguageToggle />
           </div>
         </div>
       </header>

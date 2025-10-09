@@ -17,40 +17,45 @@ import {
 } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
 import { useToast } from "@/hooks/use-toast";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 export default function Menu() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const t = translations.menu;
 
   const menuItems = [
     {
-      section: "Account",
+      section: t.account[language],
       items: [
-        { icon: User, label: "My Profile", path: "/profile" },
-        { icon: ShoppingBag, label: "My Orders", path: "/orders" },
-        { icon: Award, label: "My Awards", path: "/rewards" },
+        { icon: User, label: t.profile[language], path: "/profile" },
+        { icon: ShoppingBag, label: t.orders[language], path: "/orders" },
+        { icon: Award, label: translations.nav.rewards[language], path: "/rewards" },
       ],
     },
     {
-      section: "Support",
+      section: t.support[language],
       items: [
-        { icon: HelpCircle, label: "FAQs", path: "/faqs" },
+        { icon: HelpCircle, label: t.help[language], path: "/faqs" },
         { icon: FileText, label: "Terms of Use", path: "/terms" },
-        { icon: Mail, label: "Contact Us", path: "/contact" },
+        { icon: Mail, label: t.contact[language], path: "/contact" },
       ],
     },
     {
-      section: "Security",
+      section: t.security[language],
       items: [
-        { icon: Lock, label: "Change PIN", path: "/change-pin" },
+        { icon: Lock, label: t.changePin[language], path: "/change-pin" },
       ],
     },
   ];
 
   const handleLogout = () => {
     toast({
-      title: "Logged Out",
-      description: "You have been successfully logged out.",
+      title: language === "jp" ? "ログアウトしました" : "Logged Out",
+      description: language === "jp" ? "正常にログアウトしました" : "You have been successfully logged out.",
     });
     navigate("/login");
   };
@@ -60,23 +65,26 @@ export default function Menu() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate("/home")}
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-primary">
-                <Wallet className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold">Menu</h1>
-                <p className="text-xs text-muted-foreground">Account & Settings</p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate("/home")}
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-primary">
+                  <Wallet className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold">{t.title[language]}</h1>
+                  <p className="text-xs text-muted-foreground">{language === "jp" ? "アカウント＆設定" : "Account & Settings"}</p>
+                </div>
               </div>
             </div>
+            <LanguageToggle />
           </div>
         </div>
       </header>
@@ -139,7 +147,7 @@ export default function Menu() {
             >
               <div className="flex items-center gap-3">
                 <LogOut className="h-5 w-5" />
-                <span className="font-medium">Logout</span>
+                <span className="font-medium">{t.logout[language]}</span>
               </div>
             </Button>
           </Card>
@@ -147,7 +155,7 @@ export default function Menu() {
 
         {/* App Version */}
         <div className="mt-8 text-center text-sm text-muted-foreground">
-          ZYNO Loyalty Wallet v1.0.0
+          {t.version[language]} 1.0.0
         </div>
       </div>
 

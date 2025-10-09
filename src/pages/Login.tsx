@@ -4,11 +4,16 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Switch } from "@/components/ui/switch";
 import { toast } from "sonner";
-import { ArrowLeft, Wallet } from "lucide-react";
+import { ArrowLeft, Wallet, Languages } from "lucide-react";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 export default function Login() {
   const navigate = useNavigate();
+  const { language, setLanguage, isJapanese } = useLanguage();
+  const t = translations.login;
   const [emailOrMobile, setEmailOrMobile] = useState("");
   const [pin, setPin] = useState("");
 
@@ -38,21 +43,33 @@ export default function Login() {
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto max-w-md p-6">
         {/* Header */}
-        <div className="mb-8 flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate("/")}
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate("/")}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-muted/50">
+              <Languages className="h-4 w-4 text-muted-foreground" />
+              <span className="text-xs font-medium text-muted-foreground">EN</span>
+              <Switch 
+                checked={isJapanese} 
+                onCheckedChange={(checked) => setLanguage(checked ? "jp" : "en")}
+                className="scale-75"
+              />
+              <span className="text-xs font-medium text-muted-foreground">JP</span>
+            </div>
+          </div>
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full gradient-primary">
               <Wallet className="h-6 w-6 text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-bold">ZYNO LOYALTY WALLET</h1>
-              <p className="text-sm text-muted-foreground">Welcome back</p>
+              <p className="text-sm text-muted-foreground">{t.subtitle[language]}</p>
             </div>
           </div>
         </div>
@@ -60,15 +77,15 @@ export default function Login() {
         {/* Login Form */}
         <Card className="shadow-premium">
           <CardHeader>
-            <CardTitle className="text-2xl">Login</CardTitle>
+            <CardTitle className="text-2xl">{t.button[language]}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="emailOrMobile">Email or Mobile Number</Label>
+                <Label htmlFor="emailOrMobile">{t.email[language]}</Label>
                 <Input
                   id="emailOrMobile"
-                  placeholder="Enter email or mobile"
+                  placeholder={t.email[language]}
                   value={emailOrMobile}
                   onChange={(e) => setEmailOrMobile(e.target.value)}
                   required
@@ -77,13 +94,13 @@ export default function Login() {
 
               <div className="space-y-2">
                 <div className="flex items-center justify-between">
-                  <Label htmlFor="pin">4-Digit PIN</Label>
+                  <Label htmlFor="pin">{t.password[language]}</Label>
                   <button
                     type="button"
-                    onClick={() => toast.info("Contact support to reset your PIN")}
+                    onClick={() => toast.info(isJapanese ? "サポートに連絡してPINをリセットしてください" : "Contact support to reset your PIN")}
                     className="text-sm text-primary hover:underline"
                   >
-                    Forgot PIN?
+                    {isJapanese ? "PINを忘れた場合" : "Forgot PIN?"}
                   </button>
                 </div>
                 <Input
@@ -91,7 +108,7 @@ export default function Login() {
                   type="password"
                   inputMode="numeric"
                   maxLength={4}
-                  placeholder="Enter PIN"
+                  placeholder={t.password[language]}
                   value={pin}
                   onChange={(e) => setPin(e.target.value.replace(/\D/g, ""))}
                   required
@@ -99,23 +116,23 @@ export default function Login() {
               </div>
 
               <Button type="submit" variant="premium" className="w-full" size="lg">
-                Login
+                {t.button[language]}
               </Button>
 
               <div className="rounded-lg bg-muted p-4">
-                <p className="mb-2 text-sm font-medium">Demo Credentials:</p>
+                <p className="mb-2 text-sm font-medium">{isJapanese ? "デモ認証情報:" : "Demo Credentials:"}</p>
                 <p className="text-xs text-muted-foreground">Email: demo.user@loyalty.app</p>
                 <p className="text-xs text-muted-foreground">PIN: 1234</p>
               </div>
 
               <div className="text-center text-sm">
-                Don't have an account?{" "}
+                {t.noAccount[language]}{" "}
                 <button
                   type="button"
                   onClick={() => navigate("/register")}
                   className="text-primary font-medium hover:underline"
                 >
-                  Register here
+                  {t.register[language]}
                 </button>
               </div>
             </form>

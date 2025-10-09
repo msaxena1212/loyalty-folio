@@ -14,9 +14,14 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { ArrowLeft, Wallet } from "lucide-react";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 export default function Register() {
   const navigate = useNavigate();
+  const { language } = useLanguage();
+  const t = translations.register;
   const [formData, setFormData] = useState({
     firstName: "",
     lastName: "",
@@ -53,21 +58,24 @@ export default function Register() {
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto max-w-2xl p-6">
         {/* Header */}
-        <div className="mb-8 flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate("/")}
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate("/")}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <LanguageToggle />
+          </div>
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full gradient-primary">
               <Wallet className="h-6 w-6 text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-bold">ZYNO LOYALTY WALLET</h1>
-              <p className="text-sm text-muted-foreground">Create your account</p>
+              <p className="text-sm text-muted-foreground">{t.subtitle[language]}</p>
             </div>
           </div>
         </div>
@@ -75,16 +83,16 @@ export default function Register() {
         {/* Registration Form */}
         <Card className="shadow-premium">
           <CardHeader>
-            <CardTitle className="text-2xl">Register</CardTitle>
+            <CardTitle className="text-2xl">{t.title[language]}</CardTitle>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="grid gap-6 sm:grid-cols-2">
                 <div className="space-y-2">
-                  <Label htmlFor="firstName">First Name *</Label>
+                  <Label htmlFor="firstName">{t.name[language].split(' ')[0]} *</Label>
                   <Input
                     id="firstName"
-                    placeholder="Enter first name"
+                    placeholder={t.name[language].split(' ')[0]}
                     value={formData.firstName}
                     onChange={(e) =>
                       setFormData({ ...formData, firstName: e.target.value })
@@ -93,10 +101,10 @@ export default function Register() {
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="lastName">Last Name *</Label>
+                  <Label htmlFor="lastName">{t.name[language].split(' ')[1]} *</Label>
                   <Input
                     id="lastName"
-                    placeholder="Enter last name"
+                    placeholder={t.name[language].split(' ')[1]}
                     value={formData.lastName}
                     onChange={(e) =>
                       setFormData({ ...formData, lastName: e.target.value })
@@ -107,11 +115,11 @@ export default function Register() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="email">Email ID *</Label>
+                <Label htmlFor="email">{t.email[language]} *</Label>
                 <Input
                   id="email"
                   type="email"
-                  placeholder="your.email@example.com"
+                  placeholder={t.email[language]}
                   value={formData.email}
                   onChange={(e) =>
                     setFormData({ ...formData, email: e.target.value })
@@ -143,11 +151,11 @@ export default function Register() {
                   </Select>
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="mobile">Mobile Number *</Label>
+                  <Label htmlFor="mobile">{t.phone[language]} *</Label>
                   <Input
                     id="mobile"
                     type="tel"
-                    placeholder="+1 234 567 8900"
+                    placeholder={t.phone[language]}
                     value={formData.mobile}
                     onChange={(e) =>
                       setFormData({ ...formData, mobile: e.target.value })
@@ -218,17 +226,17 @@ export default function Register() {
               </div>
 
               <Button type="submit" variant="premium" className="w-full" size="lg">
-                Create Account
+                {t.button[language]}
               </Button>
 
               <div className="text-center text-sm">
-                Already have an account?{" "}
+                {t.haveAccount[language]}{" "}
                 <button
                   type="button"
                   onClick={() => navigate("/login")}
                   className="text-primary font-medium hover:underline"
                 >
-                  Login here
+                  {t.login[language]}
                 </button>
               </div>
             </form>

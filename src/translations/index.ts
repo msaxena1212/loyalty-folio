@@ -145,6 +145,142 @@ export const translations = {
     menu: { en: "Menu", jp: "メニュー" }
   },
 
+  // SetPin Page
+  setPin: {
+    title: { en: "Set Your PIN", jp: "PINを設定" },
+    subtitle: { en: "Create a secure 4-digit PIN", jp: "4桁の安全なPINを作成" },
+    enterPin: { en: "Enter PIN", jp: "PINを入力" },
+    confirmPin: { en: "Confirm PIN", jp: "PINを確認" },
+    button: { en: "Set PIN", jp: "PIN設定" },
+    securityTip: { en: "Security Tip", jp: "セキュリティのヒント" },
+    tipText: { en: "Choose a unique PIN that you haven't used elsewhere", jp: "他で使用していない固有のPINを選択してください" },
+    errors: {
+      length: { en: "PIN must be 4 digits", jp: "PINは4桁でなければなりません" },
+      mismatch: { en: "PINs do not match", jp: "PINが一致しません" }
+    }
+  },
+
+  // Menu Page
+  menu: {
+    title: { en: "Menu", jp: "メニュー" },
+    account: { en: "Account", jp: "アカウント" },
+    profile: { en: "My Profile", jp: "マイプロフィール" },
+    orders: { en: "My Orders", jp: "注文履歴" },
+    support: { en: "Support", jp: "サポート" },
+    help: { en: "Help Center", jp: "ヘルプセンター" },
+    contact: { en: "Contact Us", jp: "お問い合わせ" },
+    security: { en: "Security", jp: "セキュリティ" },
+    changePin: { en: "Change PIN", jp: "PIN変更" },
+    logout: { en: "Logout", jp: "ログアウト" },
+    version: { en: "Version", jp: "バージョン" }
+  },
+
+  // Wallet Page
+  wallet: {
+    title: { en: "My Wallet", jp: "マイウォレット" },
+    cards: { en: "loyalty cards", jp: "ロイヤルティカード" },
+    totalValue: { en: "Total Rewards Value", jp: "報酬総額" },
+    yourCards: { en: "Your Cards", jp: "あなたのカード" },
+    addNewCard: { en: "Add New Card", jp: "新しいカードを追加" },
+    active: { en: "Active", jp: "アクティブ" },
+    pointsBalance: { en: "Points Balance", jp: "ポイント残高" },
+    rewardValue: { en: "Reward Value", jp: "報酬価値" },
+    viewDetails: { en: "View Details", jp: "詳細を見る" },
+    redeem: { en: "Redeem", jp: "引き換え" },
+    removeCard: { en: "Remove Card?", jp: "カードを削除？" },
+    removeConfirm: { en: "Are you sure you want to remove this loyalty card from your wallet?", jp: "このロイヤルティカードをウォレットから削除してもよろしいですか？" },
+    remove: { en: "Remove", jp: "削除" },
+    noCards: { en: "No Cards Yet", jp: "カードがありません" },
+    noCardsDesc: { en: "Start adding loyalty programs to your wallet", jp: "ウォレットにロイヤルティプログラムを追加しましょう" },
+    explorePrograms: { en: "Explore Programs", jp: "プログラムを探索" },
+    monthlyGrowth: { en: "this month", jp: "今月" }
+  },
+
+  // Offers Page
+  offers: {
+    title: { en: "Available Offers", jp: "利用可能なオファー" },
+    activeOffers: { en: "active offers", jp: "アクティブなオファー" },
+    validUntil: { en: "Valid until", jp: "有効期限" },
+    pointsRequired: { en: "points required", jp: "必要ポイント" },
+    claimOffer: { en: "Claim Offer", jp: "オファーを取得" },
+    redeemNow: { en: "Redeem Now", jp: "今すぐ引き換え" },
+    viewProgram: { en: "View Program", jp: "プログラムを見る" },
+    claimed: { en: "Claimed", jp: "取得済み" },
+    noOffers: { en: "No Offers Available", jp: "オファーがありません" },
+    noOffersDesc: { en: "Check back later for exciting offers", jp: "後でまた確認してください" }
+  },
+
+  // Rewards Page
+  rewards: {
+    title: { en: "My Rewards", jp: "マイリワード" },
+    available: { en: "available", jp: "利用可能" },
+    availableRewards: { en: "Available Rewards", jp: "利用可能なリワード" },
+    redeemedRewards: { en: "Redeemed Rewards", jp: "引き換え済みリワード" },
+    useReward: { en: "Use This Reward", jp: "このリワードを使用" },
+    earned: { en: "Earned", jp: "獲得日" },
+    expires: { en: "Expires", jp: "有効期限" },
+    redeemed: { en: "Redeemed", jp: "引き換え済み" },
+    noAvailable: { en: "No available rewards yet", jp: "まだ利用可能なリワードがありません" },
+    noRedeemed: { en: "No redeemed rewards yet", jp: "まだ引き換え済みのリワードがありません" }
+  },
+
+  // Program Details Page
+  programDetails: {
+    addCard: { en: "Add Card", jp: "カードを追加" },
+    totalPoints: { en: "Total Points", jp: "合計ポイント" },
+    outlets: { en: "outlets", jp: "店舗" },
+    away: { en: "away", jp: "" },
+    tabs: {
+      program: { en: "Program", jp: "プログラム" },
+      offers: { en: "Offers", jp: "オファー" },
+      punch: { en: "Punch Card", jp: "スタンプカード" },
+      history: { en: "History", jp: "履歴" },
+      shop: { en: "Shop", jp: "ショップ" }
+    },
+    aboutProgram: { en: "About the Program", jp: "プログラムについて" },
+    earnRate: { en: "Earn Rate", jp: "獲得レート" },
+    validity: { en: "Validity", jp: "有効期限" },
+    redeemPoints: { en: "Redeem Points", jp: "ポイント引き換え" },
+    howItWorks: { en: "How It Works", jp: "使い方" },
+    termsOfUse: { en: "Terms of Use", jp: "利用規約" },
+    faqs: { en: "FAQs", jp: "よくある質問" },
+    punchProgress: { en: "Punch Card Progress", jp: "スタンプカードの進捗" },
+    progress: { en: "Progress", jp: "進捗" },
+    reward: { en: "Reward", jp: "報酬" },
+    noPunchCard: { en: "No punch card available", jp: "スタンプカードがありません" },
+    noOffers: { en: "No offers available right now", jp: "現在利用可能なオファーはありません" },
+    noHistory: { en: "No transaction history yet", jp: "まだ取引履歴がありません" },
+    shopComingSoon: { en: "Shop Coming Soon", jp: "ショップは近日公開" },
+    shopDesc: { en: "Add this card to unlock shopping features", jp: "このカードを追加してショッピング機能を利用" },
+    addCardNow: { en: "Add Card Now", jp: "今すぐカードを追加" }
+  },
+
+  // Redeem Points Page
+  redeemPoints: {
+    title: { en: "Redeem Points", jp: "ポイント引き換え" },
+    available: { en: "Available", jp: "利用可能" },
+    points: { en: "points", jp: "ポイント" },
+    enterAmount: { en: "Enter Purchase Amount", jp: "購入金額を入力" },
+    purchaseValue: { en: "Purchase Value", jp: "購入金額" },
+    pointsToRedeem: { en: "Points to Redeem", jp: "引き換えポイント" },
+    insufficientPoints: { en: "Insufficient points available", jp: "利用可能なポイントが不足しています" },
+    continue: { en: "Continue", jp: "続ける" },
+    enterYourPin: { en: "Enter Your PIN", jp: "PINを入力" },
+    enterPinDesc: { en: "Please enter your 4-digit PIN to authorize this redemption", jp: "この引き換えを承認するため4桁のPINを入力してください" },
+    customerPin: { en: "Customer PIN", jp: "顧客PIN" },
+    verifyPin: { en: "Verify PIN", jp: "PIN確認" },
+    merchantVerification: { en: "Merchant Verification", jp: "加盟店確認" },
+    merchantVerificationDesc: { en: "Ask the merchant to enter their PIN to complete the redemption", jp: "加盟店にPINを入力してもらい引き換えを完了してください" },
+    merchantPin: { en: "Merchant PIN", jp: "加盟店PIN" },
+    completeRedemption: { en: "Complete Redemption", jp: "引き換え完了" },
+    successTitle: { en: "Redemption Successful!", jp: "引き換え成功！" },
+    successDesc: { en: "Your points have been redeemed successfully", jp: "ポイントが正常に引き換えられました" },
+    amount: { en: "Amount", jp: "金額" },
+    pointsRedeemed: { en: "Points Redeemed", jp: "引き換えポイント" },
+    remainingBalance: { en: "Remaining Balance", jp: "残高" },
+    done: { en: "Done", jp: "完了" }
+  },
+
   // Common
   common: {
     search: { en: "Search", jp: "検索" },

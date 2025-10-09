@@ -6,6 +6,9 @@ import { Card } from "@/components/ui/card";
 import { ArrowLeft, Tag, Clock, Check } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import BottomNav from "@/components/BottomNav";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 const offers = [
   {
@@ -49,6 +52,8 @@ const offers = [
 export default function Offers() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const t = translations.offers;
   const [localOffers, setLocalOffers] = useState(offers);
 
   const handleClaimOffer = (offerId: number) => {
@@ -72,25 +77,24 @@ export default function Offers() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate("/home")}
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-secondary">
-                <Tag className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold">Available Offers</h1>
-                <p className="text-xs text-muted-foreground">
-                  {localOffers.filter(o => !o.expired).length} active offers
-                </p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button variant="ghost" size="icon" onClick={() => navigate("/home")}>
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-secondary">
+                  <Tag className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold">{t.title[language]}</h1>
+                  <p className="text-xs text-muted-foreground">
+                    {localOffers.filter(o => !o.expired).length} {t.activeOffers[language]}
+                  </p>
+                </div>
               </div>
             </div>
+            <LanguageToggle />
           </div>
         </div>
       </header>

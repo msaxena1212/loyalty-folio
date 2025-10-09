@@ -15,6 +15,9 @@ import {
 import { ArrowLeft, Wallet as WalletIcon, Trash2, ArrowRight, TrendingUp } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import BottomNav from "@/components/BottomNav";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 const cards = [
   {
@@ -46,6 +49,8 @@ const cards = [
 export default function Wallet() {
   const navigate = useNavigate();
   const { toast } = useToast();
+  const { language } = useLanguage();
+  const t = translations.wallet;
   const [walletCards, setWalletCards] = useState(cards);
   const [deleteCardId, setDeleteCardId] = useState<number | null>(null);
 
@@ -58,8 +63,8 @@ export default function Wallet() {
     setWalletCards(prev => prev.filter(card => card.id !== cardId));
     setDeleteCardId(null);
     toast({
-      title: "Card Removed",
-      description: "The loyalty card has been removed from your wallet.",
+      title: language === "jp" ? "カードを削除しました" : "Card Removed",
+      description: language === "jp" ? "ロイヤルティカードがウォレットから削除されました" : "The loyalty card has been removed from your wallet.",
     });
   };
 
@@ -68,25 +73,28 @@ export default function Wallet() {
       {/* Header */}
       <header className="sticky top-0 z-50 border-b bg-card/95 backdrop-blur supports-[backdrop-filter]:bg-card/80">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-4">
-            <Button
-              variant="ghost"
-              size="icon"
-              onClick={() => navigate("/home")}
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
-            <div className="flex items-center gap-3">
-              <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-primary">
-                <WalletIcon className="h-5 w-5 text-white" />
-              </div>
-              <div>
-                <h1 className="text-lg font-bold">My Wallet</h1>
-                <p className="text-xs text-muted-foreground">
-                  {cards.length} loyalty cards
-                </p>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-4">
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => navigate("/home")}
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-3">
+                <div className="flex h-10 w-10 items-center justify-center rounded-full gradient-primary">
+                  <WalletIcon className="h-5 w-5 text-white" />
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold">{t.title[language]}</h1>
+                  <p className="text-xs text-muted-foreground">
+                    {cards.length} {t.cards[language]}
+                  </p>
+                </div>
               </div>
             </div>
+            <LanguageToggle />
           </div>
         </div>
       </header>
@@ -94,12 +102,12 @@ export default function Wallet() {
       {/* Total Value Banner */}
       <div className="gradient-primary p-6 text-white">
         <div className="container mx-auto">
-          <p className="mb-2 text-sm opacity-90">Total Rewards Value</p>
+          <p className="mb-2 text-sm opacity-90">{t.totalValue[language]}</p>
           <div className="flex items-end gap-2">
             <h2 className="text-4xl font-bold">₹{totalValue.toFixed(2)}</h2>
             <div className="mb-2 flex items-center gap-1 text-sm">
               <TrendingUp className="h-4 w-4" />
-              <span>+12.5% this month</span>
+              <span>+12.5% {t.monthlyGrowth[language]}</span>
             </div>
           </div>
         </div>
@@ -108,13 +116,13 @@ export default function Wallet() {
       {/* Cards */}
       <div className="container mx-auto space-y-4 p-4">
         <div className="flex items-center justify-between">
-          <h3 className="text-lg font-semibold">Your Cards</h3>
+          <h3 className="text-lg font-semibold">{t.yourCards[language]}</h3>
           <Button
             variant="outline"
             size="sm"
             onClick={() => navigate("/home")}
           >
-            Add New Card
+            {t.addNewCard[language]}
           </Button>
         </div>
 
@@ -137,7 +145,7 @@ export default function Wallet() {
                   <div>
                     <h4 className="text-xl font-bold">{card.name}</h4>
                     <Badge variant="secondary" className="mt-1">
-                      Active
+                      {t.active[language]}
                     </Badge>
                   </div>
                 </div>
@@ -156,11 +164,11 @@ export default function Wallet() {
 
               <div className="mb-4 grid grid-cols-2 gap-4">
                 <div>
-                  <p className="text-sm text-muted-foreground">Points Balance</p>
+                  <p className="text-sm text-muted-foreground">{t.pointsBalance[language]}</p>
                   <p className="text-2xl font-bold">{card.points.toLocaleString()}</p>
                 </div>
                 <div>
-                  <p className="text-sm text-muted-foreground">Reward Value</p>
+                  <p className="text-sm text-muted-foreground">{t.rewardValue[language]}</p>
                   <p className="text-2xl font-bold text-primary">{card.value}</p>
                 </div>
               </div>
@@ -169,9 +177,9 @@ export default function Wallet() {
                 <Button
                   variant="default"
                   className="flex-1"
-                  onClick={() => navigate(`/program/₹{card.id}`)}
+                  onClick={() => navigate(`/program/${card.id}`)}
                 >
-                  View Details
+                  {t.viewDetails[language]}
                   <ArrowRight className="ml-2 h-4 w-4" />
                 </Button>
                 <Button
@@ -179,10 +187,10 @@ export default function Wallet() {
                   className="flex-1"
                   onClick={(e) => {
                     e.stopPropagation();
-                    navigate(`/redeem/₹{card.id}`);
+                    navigate(`/redeem/${card.id}`);
                   }}
                 >
-                  Redeem
+                  {t.redeem[language]}
                 </Button>
               </div>
             </div>
@@ -195,12 +203,12 @@ export default function Wallet() {
             <div className="mx-auto mb-4 flex h-16 w-16 items-center justify-center rounded-full bg-muted">
               <WalletIcon className="h-8 w-8 text-muted-foreground" />
             </div>
-            <h3 className="mb-2 text-lg font-semibold">No Cards Yet</h3>
+            <h3 className="mb-2 text-lg font-semibold">{t.noCards[language]}</h3>
             <p className="mb-4 text-sm text-muted-foreground">
-              Start adding loyalty programs to your wallet
+              {t.noCardsDesc[language]}
             </p>
             <Button variant="premium" onClick={() => navigate("/home")}>
-              Explore Programs
+              {t.explorePrograms[language]}
             </Button>
           </div>
         )}
@@ -210,19 +218,18 @@ export default function Wallet() {
       <AlertDialog open={deleteCardId !== null} onOpenChange={(open) => !open && setDeleteCardId(null)}>
         <AlertDialogContent>
           <AlertDialogHeader>
-            <AlertDialogTitle>Remove Card?</AlertDialogTitle>
+            <AlertDialogTitle>{t.removeCard[language]}</AlertDialogTitle>
             <AlertDialogDescription>
-              Are you sure you want to remove this loyalty card from your wallet? 
-              Your transaction history will be preserved, but you'll need to add the card again to use it.
+              {t.removeConfirm[language]}
             </AlertDialogDescription>
           </AlertDialogHeader>
           <AlertDialogFooter>
-            <AlertDialogCancel>Cancel</AlertDialogCancel>
+            <AlertDialogCancel>{translations.common.cancel[language]}</AlertDialogCancel>
             <AlertDialogAction
               onClick={() => deleteCardId && handleDeleteCard(deleteCardId)}
               className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
             >
-              Remove
+              {t.remove[language]}
             </AlertDialogAction>
           </AlertDialogFooter>
         </AlertDialogContent>

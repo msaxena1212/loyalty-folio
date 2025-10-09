@@ -6,10 +6,15 @@ import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
 import { ArrowLeft, Wallet, Shield } from "lucide-react";
+import { LanguageToggle } from "@/components/LanguageToggle";
+import { useLanguage } from "@/contexts/LanguageContext";
+import { translations } from "@/translations";
 
 export default function SetPin() {
   const navigate = useNavigate();
   const location = useLocation();
+  const { language } = useLanguage();
+  const t = translations.setPin;
   const [pin, setPin] = useState("");
   const [confirmPin, setConfirmPin] = useState("");
 
@@ -17,16 +22,16 @@ export default function SetPin() {
     e.preventDefault();
 
     if (pin.length !== 4) {
-      toast.error("PIN must be 4 digits");
+      toast.error(t.errors.length[language]);
       return;
     }
 
     if (pin !== confirmPin) {
-      toast.error("PINs do not match");
+      toast.error(t.errors.mismatch[language]);
       return;
     }
 
-    toast.success("PIN set successfully!");
+    toast.success(language === "jp" ? "PIN設定が完了しました！" : "PIN set successfully!");
     navigate("/home");
   };
 
@@ -34,21 +39,24 @@ export default function SetPin() {
     <div className="min-h-screen bg-gradient-to-br from-primary/5 via-background to-secondary/5">
       <div className="container mx-auto max-w-md p-6">
         {/* Header */}
-        <div className="mb-8 flex items-center gap-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={() => navigate(-1)}
-          >
-            <ArrowLeft className="h-5 w-5" />
-          </Button>
+        <div className="mb-8">
+          <div className="flex items-center justify-between mb-4">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => navigate(-1)}
+            >
+              <ArrowLeft className="h-5 w-5" />
+            </Button>
+            <LanguageToggle />
+          </div>
           <div className="flex items-center gap-3">
             <div className="flex h-12 w-12 items-center justify-center rounded-full gradient-primary">
               <Wallet className="h-6 w-6 text-white" />
             </div>
             <div>
               <h1 className="text-2xl font-bold">ZYNO LOYALTY WALLET</h1>
-              <p className="text-sm text-muted-foreground">Secure your account</p>
+              <p className="text-sm text-muted-foreground">{t.subtitle[language]}</p>
             </div>
           </div>
         </div>
@@ -61,21 +69,21 @@ export default function SetPin() {
                 <Shield className="h-8 w-8 text-primary" />
               </div>
             </div>
-            <CardTitle className="text-center text-2xl">Set Your PIN</CardTitle>
+            <CardTitle className="text-center text-2xl">{t.title[language]}</CardTitle>
             <p className="text-center text-sm text-muted-foreground">
-              Create a 4-digit PIN to secure your transactions
+              {t.subtitle[language]}
             </p>
           </CardHeader>
           <CardContent>
             <form onSubmit={handleSubmit} className="space-y-6">
               <div className="space-y-2">
-                <Label htmlFor="pin">Enter PIN</Label>
+                <Label htmlFor="pin">{t.enterPin[language]}</Label>
                 <Input
                   id="pin"
                   type="password"
                   inputMode="numeric"
                   maxLength={4}
-                  placeholder="Enter 4-digit PIN"
+                  placeholder="••••"
                   value={pin}
                   onChange={(e) => setPin(e.target.value.replace(/\D/g, ""))}
                   className="text-center text-2xl tracking-widest"
@@ -84,13 +92,13 @@ export default function SetPin() {
               </div>
 
               <div className="space-y-2">
-                <Label htmlFor="confirmPin">Confirm PIN</Label>
+                <Label htmlFor="confirmPin">{t.confirmPin[language]}</Label>
                 <Input
                   id="confirmPin"
                   type="password"
                   inputMode="numeric"
                   maxLength={4}
-                  placeholder="Re-enter PIN"
+                  placeholder="••••"
                   value={confirmPin}
                   onChange={(e) => setConfirmPin(e.target.value.replace(/\D/g, ""))}
                   className="text-center text-2xl tracking-widest"
@@ -100,18 +108,14 @@ export default function SetPin() {
 
               <div className="rounded-lg bg-primary/5 p-4">
                 <p className="text-sm text-muted-foreground">
-                  <strong className="text-foreground">Security Tips:</strong>
+                  <strong className="text-foreground">{t.securityTip[language]}:</strong>
                   <br />
-                  • Choose a PIN that's not easy to guess
-                  <br />
-                  • Don't share your PIN with anyone
-                  <br />
-                  • You'll need this PIN for all transactions
+                  {t.tipText[language]}
                 </p>
               </div>
 
               <Button type="submit" variant="premium" className="w-full" size="lg">
-                Set PIN & Continue
+                {t.button[language]}
               </Button>
             </form>
           </CardContent>
