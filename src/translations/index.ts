@@ -281,6 +281,13 @@ export const translations = {
     done: { en: "Done", jp: "完了" }
   },
 
+  // NotFound Page
+  notFound: {
+    title: { en: "404", jp: "404" },
+    message: { en: "Oops! Page not found", jp: "ページが見つかりません" },
+    returnHome: { en: "Return to Home", jp: "ホームに戻る" }
+  },
+
   // Common
   common: {
     search: { en: "Search", jp: "検索" },
@@ -293,7 +300,8 @@ export const translations = {
     next: { en: "Next", jp: "次へ" },
     loading: { en: "Loading...", jp: "読み込み中..." },
     error: { en: "Error", jp: "エラー" },
-    success: { en: "Success", jp: "成功" }
+    success: { en: "Success", jp: "成功" },
+    currency: { en: "₹", jp: "¥" }
   }
 };
 
