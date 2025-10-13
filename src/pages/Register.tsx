@@ -47,7 +47,7 @@ export default function Register() {
     const emptyField = requiredFields.find(([_, value]) => !value);
     
     if (emptyField) {
-      toast.error(`Please fill in ₹{emptyField[0].replace(/([A-Z])/g, ' ₹1').toLowerCase()}`);
+      toast.error(`Please fill in ${emptyField[0].replace(/([A-Z])/g, ' $1').toLowerCase()}`);
       return;
     }
 

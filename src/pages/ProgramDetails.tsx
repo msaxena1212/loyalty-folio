@@ -14,10 +14,10 @@ import { translations } from "@/translations";
 const programsData = {
   1: {
     id: 1,
-    name: "Cafe Moments",
+    name: { en: "Cafe Moments", jp: "カフェモーメント" },
     logo: "☕",
     points: 12550,
-    earnRate: { en: "Earn 10 points per ₹1", jp: "¥1につき10ポイント獲得" },
+    earnRate: { en: "Earn 10 points per ¥1", jp: "¥1につき10ポイント獲得" },
     outlets: 5,
     distance: "0.5 km",
     description: { en: "Your favorite coffee shop with rewards on every purchase.", jp: "お気に入りのコーヒーショップで購入ごとにリワードを獲得。" },
@@ -26,10 +26,10 @@ const programsData = {
   },
   2: {
     id: 2,
-    name: "Pizza Hut",
+    name: { en: "Pizza Hut", jp: "ピザハット" },
     logo: "🍕",
     points: 0,
-    earnRate: { en: "Earn 5 points per ₹1", jp: "¥1につき5ポイント獲得" },
+    earnRate: { en: "Earn 5 points per ¥1", jp: "¥1につき5ポイント獲得" },
     outlets: 8,
     distance: "1.2 km",
     description: { en: "Enjoy delicious pizzas and earn rewards with every order.", jp: "美味しいピザを楽しみながら注文ごとにリワードを獲得。" },
@@ -134,7 +134,7 @@ export default function ProgramDetails() {
               {program.logo}
             </div>
             <div className="flex-1">
-              <h1 className="text-2xl font-bold">{program.name}</h1>
+              <h1 className="text-2xl font-bold">{typeof program.name === 'string' ? program.name : program.name[lang]}</h1>
               <p className="text-sm opacity-90">{program.earnRate[lang]}</p>
               <div className="mt-2 flex items-center gap-2 text-sm">
                 <MapPin className="h-4 w-4" />

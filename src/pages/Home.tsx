@@ -186,7 +186,7 @@ export default function Home() {
             <div className="text-xs text-muted-foreground mt-1">{t.stats.members[language]}</div>
           </div>
           <div className="text-center p-4 rounded-2xl bg-gradient-to-br from-secondary/10 to-accent/10">
-            <div className="text-2xl font-bold text-secondary">₹2M+</div>
+            <div className="text-2xl font-bold text-secondary">¥2M+</div>
             <div className="text-xs text-muted-foreground mt-1">{t.stats.saved[language]}</div>
           </div>
         </div>
