@@ -18,6 +18,7 @@ import {
   Languages,
 } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
+import zynoLogo from "@/assets/zyno-logo.png";
 
 const categories = [
   { 
@@ -67,12 +68,10 @@ export default function Home() {
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl gradient-primary shadow-glow animate-pulse-slow">
-                <Wallet className="h-6 w-6 text-white" />
-              </div>
+              <img src={zynoLogo} alt="Zyno Logo" className="h-12 w-12 rounded-xl shadow-lg" />
               <div>
-                <h1 className="text-xl font-bold bg-gradient-to-r from-primary to-secondary bg-clip-text text-transparent">
-                  {t.location[language].split(',')[0].includes('New Delhi') ? 'ZYNO WALLET' : 'ZYNO WALLET'}
+                <h1 className="text-xl font-bold text-primary">
+                  Zyno <span className="text-secondary">Loyalty</span>
                 </h1>
                 <div className="flex items-center gap-1 text-xs text-muted-foreground">
                   <MapPin className="h-3 w-3" />

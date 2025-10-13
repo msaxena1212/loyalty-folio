@@ -9,6 +9,7 @@ import heroFood from "@/assets/hero-food.jpg";
 import heroLifestyle from "@/assets/hero-lifestyle.jpg";
 import heroEssentials from "@/assets/hero-essentials.jpg";
 import heroWellness from "@/assets/hero-wellness.jpg";
+import zynoLogo from "@/assets/zyno-logo.png";
 
 const slides = [
   {
@@ -70,9 +71,12 @@ export const PreLoginCarousel = () => {
         {/* Header */}
         <header className="p-6">
           <div className="flex items-center justify-between">
-            <div>
-              <h1 className="text-2xl font-bold text-white">{t.title[language]}</h1>
-              <p className="text-sm text-white/80">{t.company[language]}</p>
+            <div className="flex items-center gap-3">
+              <img src={zynoLogo} alt="Zyno Logo" className="h-12 w-12 rounded-xl" />
+              <div>
+                <h1 className="text-2xl font-bold text-white">Zyno <span className="text-secondary">Loyalty</span></h1>
+                <p className="text-sm text-white/80">{t.company[language]}</p>
+              </div>
             </div>
             <div className="flex items-center gap-2 px-3 py-2 rounded-full bg-white/10 backdrop-blur-sm">
               <Languages className="h-4 w-4 text-white/90" />

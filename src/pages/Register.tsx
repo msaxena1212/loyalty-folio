@@ -17,6 +17,7 @@ import { ArrowLeft, Wallet } from "lucide-react";
 import { LanguageToggle } from "@/components/LanguageToggle";
 import { useLanguage } from "@/contexts/LanguageContext";
 import { translations } from "@/translations";
+import zynoLogo from "@/assets/zyno-logo.png";
 
 export default function Register() {
   const navigate = useNavigate();
@@ -70,11 +71,9 @@ export default function Register() {
             <LanguageToggle />
           </div>
           <div className="flex items-center gap-3">
-            <div className="flex h-12 w-12 items-center justify-center rounded-full gradient-primary">
-              <Wallet className="h-6 w-6 text-white" />
-            </div>
+            <img src={zynoLogo} alt="Zyno Logo" className="h-12 w-12 rounded-xl shadow-lg" />
             <div>
-              <h1 className="text-2xl font-bold">ZYNO LOYALTY WALLET</h1>
+              <h1 className="text-2xl font-bold text-primary">Zyno <span className="text-secondary">Loyalty</span></h1>
               <p className="text-sm text-muted-foreground">{t.subtitle[language]}</p>
             </div>
           </div>
