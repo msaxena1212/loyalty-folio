@@ -15,6 +15,7 @@ import {
   Coffee,
 } from "lucide-react";
 import BottomNav from "@/components/BottomNav";
+import { LanguageToggle } from "@/components/LanguageToggle";
 
 const categoryData = {
   food: { icon: Utensils },
@@ -290,26 +291,29 @@ export default function CategoryPrograms() {
       {/* Header with Glass Effect */}
       <header className="sticky top-0 z-50 glass-card border-b">
         <div className="container mx-auto px-4 py-4">
-          <div className="flex items-center gap-3">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="rounded-full"
-              onClick={() => navigate("/home")}
-            >
-              <ArrowLeft className="h-5 w-5" />
-            </Button>
+          <div className="flex items-center justify-between gap-3">
             <div className="flex items-center gap-3">
-              <div className="flex h-12 w-12 items-center justify-center rounded-2xl gradient-primary shadow-glow">
-                {CategoryIcon && <CategoryIcon className="h-6 w-6 text-white" />}
-              </div>
-              <div>
-                <h1 className="text-lg font-bold">{categoryName}</h1>
-                <p className="text-xs text-muted-foreground">
-                  {filteredPrograms.length} {t.programs[language]}
-                </p>
+              <Button
+                variant="ghost"
+                size="icon"
+                className="rounded-full"
+                onClick={() => navigate("/home")}
+              >
+                <ArrowLeft className="h-5 w-5" />
+              </Button>
+              <div className="flex items-center gap-3">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl gradient-primary shadow-glow">
+                  {CategoryIcon && <CategoryIcon className="h-6 w-6 text-white" />}
+                </div>
+                <div>
+                  <h1 className="text-lg font-bold">{categoryName}</h1>
+                  <p className="text-xs text-muted-foreground">
+                    {filteredPrograms.length} {t.programs[language]}
+                  </p>
+                </div>
               </div>
             </div>
+            <LanguageToggle />
           </div>
         </div>
       </header>
